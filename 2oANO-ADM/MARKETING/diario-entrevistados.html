@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diário de Bordo · Entrevistados</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --surface: #171717;
+    --surface2: #1e1e1e;
+    --border: #2a2a2a;
+    --accent: #c8a96e;
+    --accent2: #7fb3a0;
+    --danger: #c96e6e;
+    --ok: #6ec884;
+    --warn: #c8b56e;
+    --text: #e8e2d9;
+    --muted: #6b6560;
+    --heading: 'Playfair Display', serif;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 40px;
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    background: rgba(15,15,15,0.95);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+  header h1 {
+    font-family: var(--heading);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  header span {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .header-actions { margin-left: auto; display: flex; gap: 10px; }
+
+  /* NAV TABS */
+  nav {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    background: var(--surface);
+  }
+  nav button {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  nav button:hover { color: var(--text); }
+  nav button.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* MAIN LAYOUT */
+  main { padding: 32px 40px; max-width: 1200px; }
+
+  .section { display: none; }
+  .section.active { display: block; animation: fadeIn 0.3s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .section-header h2 {
+    font-family: var(--heading);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .badge-count {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+
+  /* FORM CARD */
+  .form-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 32px;
+    margin-bottom: 32px;
+  }
+  .form-card h3 {
+    font-family: var(--heading);
+    font-size: 16px;
+    color: var(--accent);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .form-grid .full { grid-column: 1 / -1; }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  label span {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  label span em {
+    color: var(--danger);
+    font-style: normal;
+    margin-left: 2px;
+  }
+  input, select, textarea {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    padding: 10px 14px;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--accent);
+  }
+  select option { background: var(--surface2); }
+  textarea { resize: vertical; min-height: 80px; }
+
+  /* RULES EDITOR */
+  .rules-area {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--accent2);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 16px;
+    border-radius: 2px;
+    width: 100%;
+    min-height: 200px;
+    resize: vertical;
+  }
+
+  /* BUTTONS */
+  .btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+    font-weight: 500;
+  }
+  .btn-primary:hover { background: #d4b87a; }
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-danger {
+    background: transparent;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+  .btn-danger:hover { background: var(--danger); color: #000; }
+  .btn-ok {
+    background: transparent;
+    border: 1px solid var(--accent2);
+    color: var(--accent2);
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+  .btn-ok:hover { background: var(--accent2); color: #000; }
+
+  .form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  thead th {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  tbody tr:hover { background: var(--surface2); }
+  tbody td {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  /* STATUS PILLS */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .pill::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .pill-ok    { background: rgba(110,200,132,0.12); color: var(--ok); border: 1px solid rgba(110,200,132,0.3); }
+  .pill-warn  { background: rgba(200,181,110,0.12); color: var(--warn); border: 1px solid rgba(200,181,110,0.3); }
+  .pill-bad   { background: rgba(201,110,110,0.12); color: var(--danger); border: 1px solid rgba(201,110,110,0.3); }
+  .pill-cat   { background: rgba(127,179,160,0.1); color: var(--accent2); border: 1px solid rgba(127,179,160,0.3); margin: 2px; }
+
+  /* CATEGORY CARDS */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .cat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 20px;
+  }
+  .cat-card h4 {
+    font-family: var(--heading);
+    font-size: 15px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .cat-card .cat-count {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 8px 0;
+  }
+  .cat-card .cat-names {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* REPORT CARDS */
+  .report-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border);
+    border-radius: 2px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .report-card.ok   { border-left-color: var(--ok); }
+  .report-card.warn { border-left-color: var(--warn); }
+  .report-card.bad  { border-left-color: var(--danger); }
+
+  .report-info { flex: 1; }
+  .report-info h4 {
+    font-family: var(--heading);
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .report-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .report-violations {
+    font-size: 12px;
+    color: var(--danger);
+    margin-top: 8px;
+  }
+  .report-violations li { margin-left: 16px; margin-top: 2px; }
+
+  /* SEARCH BAR */
+  .search-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    align-items: center;
+  }
+  .search-bar input { max-width: 300px; }
+
+  /* EMPTY STATE */
+  .empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+  .empty span { display: block; font-size: 32px; margin-bottom: 12px; opacity: 0.3; }
+
+  /* MODAL */
+  .modal-bg {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-bg.open { display: flex; }
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 32px;
+    max-width: 620px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    animation: fadeIn 0.2s ease;
+  }
+  .modal h3 {
+    font-family: var(--heading);
+    font-size: 20px;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .modal-field {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .modal-field .key {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+    margin-right: 16px;
+  }
+  .modal-field .val { color: var(--text); text-align: right; }
+  .modal-actions { margin-top: 20px; display: flex; gap: 10px; justify-content: flex-end; }
+
+  /* TOAST */
+  #toast {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 12px 18px;
+    border-radius: 2px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s;
+    pointer-events: none;
+    z-index: 300;
+  }
+  #toast.show { opacity: 1; transform: translateY(0); }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 700px) {
+    header { padding: 16px 20px; }
+    nav { padding: 0 10px; overflow-x: auto; }
+    nav button { padding: 12px 14px; white-space: nowrap; }
+    main { padding: 20px; }
+    .form-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Diário de Bordo</h1>
+  <span>Controle de Entrevistados</span>
+  <div class="header-actions">
+    <button class="btn btn-secondary" onclick="exportJSON()">↓ Exportar JSON</button>
+    <button class="btn btn-primary" onclick="showTab('cadastro')">+ Novo Entrevistado</button>
+  </div>
+</header>
+
+<nav>
+  <button class="active" onclick="showTab('cadastro')">Cadastro</button>
+  <button onclick="showTab('lista')">Lista <span id="navCount"></span></button>
+  <button onclick="showTab('categorias')">Categorias</button>
+  <button onclick="showTab('relatorio')">Relatório / Julgamento</button>
+  <button onclick="showTab('regras')">Regras</button>
+</nav>
+
+<main>
+
+  <!-- ===================== CADASTRO ===================== -->
+  <div class="section active" id="sec-cadastro">
+    <div class="section-header">
+      <h2 id="formTitle">Novo Entrevistado</h2>
+    </div>
+    <div class="form-card">
+      <h3>Dados do Entrevistado</h3>
+      <div class="form-grid">
+        <label>
+          <span>Nome Completo <em>*</em></span>
+          <input type="text" id="f-nome" placeholder="Ex: João da Silva">
+        </label>
+        <label>
+          <span>Idade <em>*</em></span>
+          <input type="number" id="f-idade" min="0" max="120" placeholder="Ex: 34">
+        </label>
+        <label>
+          <span>Cargo / Função</span>
+          <input type="text" id="f-cargo" placeholder="Ex: Auxiliar de Produção">
+        </label>
+        <label>
+          <span>Setor / Departamento</span>
+          <input type="text" id="f-setor" placeholder="Ex: Logística">
+        </label>
+        <label>
+          <span>Data da Entrevista <em>*</em></span>
+          <input type="date" id="f-data">
+        </label>
+        <label>
+          <span>Situação Atual</span>
+          <select id="f-situacao">
+            <option value="">Selecione…</option>
+            <option value="Ativo">Ativo</option>
+            <option value="Afastado">Afastado</option>
+            <option value="Demitido">Demitido</option>
+            <option value="Em processo seletivo">Em processo seletivo</option>
+          </select>
+        </label>
+        <label>
+          <span>Nível de Risco Identificado</span>
+          <select id="f-risco">
+            <option value="">Não avaliado</option>
+            <option value="Baixo">Baixo</option>
+            <option value="Médio">Médio</option>
+            <option value="Alto">Alto</option>
+            <option value="Crítico">Crítico</option>
+          </select>
+        </label>
+        <label>
+          <span>Possui EPI/Documentação?</span>
+          <select id="f-epi">
+            <option value="">Não verificado</option>
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+            <option value="Parcial">Parcial</option>
+          </select>
+        </label>
+        <label class="full">
+          <span>Observações / Anotações</span>
+          <textarea id="f-obs" placeholder="Descreva pontos relevantes da entrevista…"></textarea>
+        </label>
+        <label class="full">
+          <span>Campos Adicionais (formato: chave: valor, separados por vírgula)</span>
+          <input type="text" id="f-extra" placeholder="Ex: turno: noturno, matrícula: 1234">
+        </label>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="salvarEntrevistado()">Salvar Entrevistado</button>
+        <button class="btn btn-secondary" onclick="limparForm()">Limpar</button>
+        <input type="hidden" id="f-editId" value="">
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== LISTA ===================== -->
+  <div class="section" id="sec-lista">
+    <div class="section-header">
+      <h2>Entrevistados</h2>
+      <span class="badge-count" id="listCount">0</span>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Buscar por nome, cargo, setor…" oninput="renderLista()">
+      <select id="filterStatus" onchange="renderLista()">
+        <option value="">Todos os status</option>
+        <option value="ok">Adequado</option>
+        <option value="warn">Atenção</option>
+        <option value="bad">Irregular</option>
+      </select>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Cargo</th>
+            <th>Setor</th>
+            <th>Data</th>
+            <th>Situação</th>
+            <th>Risco</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="listaBody"></tbody>
+      </table>
+    </div>
+    <div class="empty" id="emptyList" style="display:none">
+      <span>📋</span>
+      Nenhum entrevistado cadastrado ainda.
+    </div>
+  </div>
+
+  <!-- ===================== CATEGORIAS ===================== -->
+  <div class="section" id="sec-categorias">
+    <div class="section-header">
+      <h2>Categorias Automáticas</h2>
+    </div>
+    <div class="cat-grid" id="catGrid"></div>
+    <div class="empty" id="emptyCat" style="display:none">
+      <span>🗂️</span>
+      Cadastre entrevistados para gerar categorias.
+    </div>
+  </div>
+
+  <!-- ===================== RELATÓRIO ===================== -->
+  <div class="section" id="sec-relatorio">
+    <div class="section-header">
+      <h2>Relatório & Julgamento</h2>
+    </div>
+    <div style="margin-bottom:20px; display:flex; gap:10px;">
+      <button class="btn btn-primary" onclick="gerarRelatorio()">↻ Gerar / Atualizar Relatório</button>
+      <button class="btn btn-secondary" onclick="exportRelatorio()">↓ Exportar Relatório TXT</button>
+    </div>
+    <div id="relatorioContent"></div>
+    <div class="empty" id="emptyRel" style="display:none">
+      <span>⚖️</span>
+      Clique em "Gerar Relatório" para avaliar os entrevistados.
+    </div>
+  </div>
+
+  <!-- ===================== REGRAS ===================== -->
+  <div class="section" id="sec-regras">
+    <div class="section-header">
+      <h2>Editor de Regras de Julgamento</h2>
+    </div>
+    <div class="form-card">
+      <h3>Regras Atuais (JavaScript)</h3>
+      <p style="color:var(--muted); font-size:12px; margin-bottom:16px; line-height:1.7;">
+        Edite as regras abaixo. Cada regra retorna um objeto com <code style="color:var(--accent2)">{ tipo: 'bad'|'warn'|'ok', msg: 'Motivo' }</code> ou <code style="color:var(--accent2)">null</code> para ignorar.<br>
+        A função <b>julgar(e)</b> recebe o entrevistado <b>e</b> com os campos: nome, idade, cargo, setor, situacao, risco, epi, obs, extra (objeto), data.
+      </p>
+      <textarea class="rules-area" id="rulesEditor" spellcheck="false"></textarea>
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="salvarRegras()">Salvar Regras</button>
+        <button class="btn btn-secondary" onclick="resetRegras()">Restaurar Padrão</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- MODAL DETALHES -->
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)fecharModal()">
+  <div class="modal" id="modalContent">
+    <h3 id="modalTitle">Detalhes</h3>
+    <div id="modalBody"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ok" onclick="editarDoModal()">Editar</button>
+      <button class="btn btn-danger" onclick="deletarDoModal()">Excluir</button>
+      <button class="btn btn-secondary" onclick="fecharModal()">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ================================================================
+//  STORAGE
+// ================================================================
+const KEY_DATA  = 'db_entrevistados';
+const KEY_RULES = 'db_regras';
+
+function loadData()  { return JSON.parse(localStorage.getItem(KEY_DATA)  || '[]'); }
+function saveData(d) { localStorage.setItem(KEY_DATA, JSON.stringify(d)); updateNavCount(); }
+
+// ================================================================
+//  REGRAS PADRÃO
+// ================================================================
+const DEFAULT_RULES = `// Função principal — retorna array de violações
+function julgar(e) {
+  const v = [];
+
+  // ── REGRAS OBRIGATÓRIAS ────────────────────────────────────────
+  if (!e.nome || e.nome.trim() === '')
+    v.push({ tipo: 'bad', msg: 'Nome não informado' });
+
+  if (e.idade === '' || e.idade === null || e.idade === undefined)
+    v.push({ tipo: 'bad', msg: 'Idade não informada' });
+  else if (Number(e.idade) < 18)
+    v.push({ tipo: 'bad', msg: 'Menor de idade (< 18 anos)' });
+  else if (Number(e.idade) > 65)
+    v.push({ tipo: 'warn', msg: 'Idade acima de 65 anos — verificar situação' });
+
+  if (!e.cargo || e.cargo.trim() === '')
+    v.push({ tipo: 'bad', msg: 'Cargo/função não informado' });
+
+  if (!e.data || e.data.trim() === '')
+    v.push({ tipo: 'bad', msg: 'Data da entrevista não informada' });
+
+  // ── REGRAS DE ATENÇÃO ─────────────────────────────────────────
+  if (e.risco === 'Alto' || e.risco === 'Crítico')
+    v.push({ tipo: 'bad', msg: 'Nível de risco: ' + e.risco });
+
+  if (e.risco === 'Médio')
+    v.push({ tipo: 'warn', msg: 'Risco médio identificado — acompanhar' });
+
+  if (e.epi === 'Não')
+    v.push({ tipo: 'bad', msg: 'Sem EPI/documentação' });
+
+  if (e.epi === 'Parcial')
+    v.push({ tipo: 'warn', msg: 'EPI/documentação parcial' });
+
+  if (e.situacao === 'Afastado')
+    v.push({ tipo: 'warn', msg: 'Trabalhador afastado' });
+
+  if (e.situacao === 'Demitido')
+    v.push({ tipo: 'warn', msg: 'Situação: Demitido' });
+
+  // ── ADICIONE NOVAS REGRAS ABAIXO ──────────────────────────────
+  // Exemplo: if (e.extra.turno === 'noturno') v.push({ tipo: 'warn', msg: 'Trabalho noturno — verificar NR-17' });
+
+  return v;
+}`;
+
+function loadRules() {
+  return localStorage.getItem(KEY_RULES) || DEFAULT_RULES;
+}
+function saveRulesStr(str) {
+  localStorage.setItem(KEY_RULES, str);
+}
+
+// ================================================================
+//  JULGAR
+// ================================================================
+function executarJulgamento(e) {
+  try {
+    const fn = new Function(loadRules() + '\nreturn julgar(arguments[0]);');
+    return fn(e) || [];
+  } catch(err) {
+    return [{ tipo: 'bad', msg: 'Erro nas regras: ' + err.message }];
+  }
+}
+
+function statusGeral(violacoes) {
+  if (!violacoes || violacoes.length === 0) return 'ok';
+  if (violacoes.some(v => v.tipo === 'bad')) return 'bad';
+  if (violacoes.some(v => v.tipo === 'warn')) return 'warn';
+  return 'ok';
+}
+
+function statusLabel(s) {
+  if (s === 'ok')   return '<span class="pill pill-ok">Adequado</span>';
+  if (s === 'warn') return '<span class="pill pill-warn">Atenção</span>';
+  return '<span class="pill pill-bad">Irregular</span>';
+}
+
+// ================================================================
+//  TABS
+// ================================================================
+function showTab(t) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + t).classList.add('active');
+  const idx = ['cadastro','lista','categorias','relatorio','regras'].indexOf(t);
+  document.querySelectorAll('nav button')[idx].classList.add('active');
+
+  if (t === 'lista')       renderLista();
+  if (t === 'categorias')  renderCategorias();
+  if (t === 'relatorio')   gerarRelatorio();
+  if (t === 'regras')      carregarRulesEditor();
+}
+
+function updateNavCount() {
+  const n = loadData().length;
+  const el = document.getElementById('navCount');
+  el.textContent = n > 0 ? `(${n})` : '';
+  document.getElementById('listCount').textContent = n;
+}
+
+// ================================================================
+//  CADASTRO
+// ================================================================
+function salvarEntrevistado() {
+  const nome  = document.getElementById('f-nome').value.trim();
+  const idade = document.getElementById('f-idade').value;
+  const cargo = document.getElementById('f-cargo').value.trim();
+  const setor = document.getElementById('f-setor').value.trim();
+  const data  = document.getElementById('f-data').value;
+  const sit   = document.getElementById('f-situacao').value;
+  const risco = document.getElementById('f-risco').value;
+  const epi   = document.getElementById('f-epi').value;
+  const obs   = document.getElementById('f-obs').value.trim();
+  const extraRaw = document.getElementById('f-extra').value.trim();
+  const editId   = document.getElementById('f-editId').value;
+
+  if (!nome) { toast('Nome é obrigatório'); return; }
+
+  // parse extra
+  const extra = {};
+  if (extraRaw) {
+    extraRaw.split(',').forEach(p => {
+      const [k, ...v] = p.split(':');
+      if (k && v.length) extra[k.trim().toLowerCase()] = v.join(':').trim();
+    });
+  }
+
+  const db = loadData();
+  if (editId) {
+    const idx = db.findIndex(x => x.id === editId);
+    if (idx >= 0) {
+      db[idx] = { ...db[idx], nome, idade, cargo, setor, data, situacao: sit, risco, epi, obs, extra };
+      saveData(db);
+      toast('Entrevistado atualizado!');
+    }
+  } else {
+    db.push({
+      id: Date.now().toString(),
+      nome, idade, cargo, setor, data,
+      situacao: sit, risco, epi, obs, extra,
+      criadoEm: new Date().toISOString()
+    });
+    saveData(db);
+    toast('Entrevistado cadastrado!');
+  }
+  limparForm();
+}
+
+function limparForm() {
+  ['f-nome','f-idade','f-cargo','f-setor','f-data','f-obs','f-extra'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  ['f-situacao','f-risco','f-epi'].forEach(id => {
+    document.getElementById(id).selectedIndex = 0;
+  });
+  document.getElementById('f-editId').value = '';
+  document.getElementById('formTitle').textContent = 'Novo Entrevistado';
+}
+
+// ================================================================
+//  LISTA
+// ================================================================
+function renderLista() {
+  const db    = loadData();
+  const q     = (document.getElementById('searchInput').value || '').toLowerCase();
+  const fStat = document.getElementById('filterStatus').value;
+
+  let filtered = db.filter(e => {
+    const match = [e.nome, e.cargo, e.setor, e.situacao].join(' ').toLowerCase().includes(q);
+    if (!match) return false;
+    if (fStat) {
+      const v = executarJulgamento(e);
+      if (statusGeral(v) !== fStat) return false;
+    }
+    return true;
+  });
+
+  document.getElementById('listCount').textContent = db.length;
+  const tbody = document.getElementById('listaBody');
+  document.getElementById('emptyList').style.display = filtered.length === 0 ? 'block' : 'none';
+
+  tbody.innerHTML = filtered.map(e => {
+    const v = executarJulgamento(e);
+    const s = statusGeral(v);
+    const riscoPill = e.risco ?
+      `<span class="pill ${e.risco==='Alto'||e.risco==='Crítico'?'pill-bad':e.risco==='Médio'?'pill-warn':'pill-ok'}">${e.risco}</span>` : '—';
+    return `<tr>
+      <td><a href="#" onclick="abrirModal('${e.id}');return false;" style="color:var(--accent);text-decoration:none;">${e.nome||'—'}</a></td>
+      <td>${e.idade||'—'}</td>
+      <td>${e.cargo||'—'}</td>
+      <td>${e.setor||'—'}</td>
+      <td style="font-family:var(--mono);font-size:11px;">${formatDate(e.data)}</td>
+      <td>${e.situacao||'—'}</td>
+      <td>${riscoPill}</td>
+      <td>${statusLabel(s)}</td>
+      <td>
+        <button class="btn btn-ok" onclick="editarEntrevistado('${e.id}')">Editar</button>
+        <button class="btn btn-danger" style="margin-left:4px" onclick="deletarEntrevistado('${e.id}')">Del</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+// ================================================================
+//  CATEGORIAS
+// ================================================================
+function renderCategorias() {
+  const db = loadData();
+  if (db.length === 0) {
+    document.getElementById('catGrid').innerHTML = '';
+    document.getElementById('emptyCat').style.display = 'block';
+    return;
+  }
+  document.getElementById('emptyCat').style.display = 'none';
+
+  const cats = gerarCategorias(db);
+  document.getElementById('catGrid').innerHTML = cats.map(c => `
+    <div class="cat-card">
+      <h4>${c.titulo}</h4>
+      <div class="cat-count">${c.membros.length}</div>
+      <div class="cat-names">${c.membros.map(m => m.nome).join(' · ') || '—'}</div>
+    </div>
+  `).join('');
+}
+
+function gerarCategorias(db) {
+  const cats = [];
+
+  // Por faixa etária
+  const fx = [
+    { label: 'Menor de 18', fn: e => e.idade !== '' && Number(e.idade) < 18 },
+    { label: '18–30 anos',  fn: e => e.idade !== '' && Number(e.idade) >= 18 && Number(e.idade) <= 30 },
+    { label: '31–45 anos',  fn: e => e.idade !== '' && Number(e.idade) >= 31 && Number(e.idade) <= 45 },
+    { label: '46–60 anos',  fn: e => e.idade !== '' && Number(e.idade) >= 46 && Number(e.idade) <= 60 },
+    { label: 'Acima de 60', fn: e => e.idade !== '' && Number(e.idade) > 60 },
+  ];
+  fx.forEach(f => {
+    const m = db.filter(f.fn);
+    if (m.length) cats.push({ titulo: '🎂 Faixa Etária · ' + f.label, membros: m });
+  });
+
+  // Por situação
+  const sits = [...new Set(db.map(e => e.situacao).filter(Boolean))];
+  sits.forEach(s => {
+    const m = db.filter(e => e.situacao === s);
+    cats.push({ titulo: '📌 Situação · ' + s, membros: m });
+  });
+
+  // Por risco
+  const riscos = ['Crítico','Alto','Médio','Baixo'];
+  riscos.forEach(r => {
+    const m = db.filter(e => e.risco === r);
+    if (m.length) cats.push({ titulo: '⚠️ Risco · ' + r, membros: m });
+  });
+
+  // Por setor
+  const setores = [...new Set(db.map(e => e.setor).filter(Boolean))];
+  setores.forEach(s => {
+    const m = db.filter(e => e.setor === s);
+    cats.push({ titulo: '🏢 Setor · ' + s, membros: m });
+  });
+
+  // Por status de julgamento
+  const grps = { ok: [], warn: [], bad: [] };
+  db.forEach(e => {
+    const v = executarJulgamento(e);
+    grps[statusGeral(v)].push(e);
+  });
+  if (grps.ok.length)   cats.push({ titulo: '✅ Status · Adequado',    membros: grps.ok });
+  if (grps.warn.length) cats.push({ titulo: '🟡 Status · Atenção',      membros: grps.warn });
+  if (grps.bad.length)  cats.push({ titulo: '🔴 Status · Irregular',    membros: grps.bad });
+
+  // EPI
+  ['Sim','Não','Parcial','Não verificado'].forEach(v => {
+    const m = db.filter(e => (e.epi||'Não verificado') === v);
+    if (m.length) cats.push({ titulo: '🦺 EPI · ' + v, membros: m });
+  });
+
+  return cats;
+}
+
+// ================================================================
+//  RELATÓRIO
+// ================================================================
+function gerarRelatorio() {
+  const db = loadData();
+  document.getElementById('emptyRel').style.display = db.length === 0 ? 'block' : 'none';
+  if (db.length === 0) { document.getElementById('relatorioContent').innerHTML = ''; return; }
+
+  const sorted = [...db].sort((a, b) => {
+    const order = { bad: 0, warn: 1, ok: 2 };
+    const va = executarJulgamento(a);
+    const vb = executarJulgamento(b);
+    return order[statusGeral(va)] - order[statusGeral(vb)];
+  });
+
+  document.getElementById('relatorioContent').innerHTML = sorted.map(e => {
+    const v = executarJulgamento(e);
+    const s = statusGeral(v);
+    const bads  = v.filter(x => x.tipo === 'bad');
+    const warns = v.filter(x => x.tipo === 'warn');
+    const extraStr = Object.keys(e.extra||{}).map(k => `${k}: ${e.extra[k]}`).join(', ');
+    return `
+    <div class="report-card ${s}">
+      <div class="report-info">
+        <h4>${e.nome || '—'}</h4>
+        <div class="report-meta">
+          ${e.idade ? `Idade: ${e.idade} &nbsp;·&nbsp;` : ''}
+          ${e.cargo ? `Cargo: ${e.cargo} &nbsp;·&nbsp;` : ''}
+          ${e.setor ? `Setor: ${e.setor} &nbsp;·&nbsp;` : ''}
+          Data: ${formatDate(e.data)}
+          ${e.situacao ? `&nbsp;·&nbsp; Situação: ${e.situacao}` : ''}
+          ${e.risco ? `&nbsp;·&nbsp; Risco: ${e.risco}` : ''}
+          ${extraStr ? `<br><span style="opacity:.6">${extraStr}</span>` : ''}
+        </div>
+        ${bads.length > 0 ? `<div class="report-violations">Irregularidades:<ul>${bads.map(x=>`<li>${x.msg}</li>`).join('')}</ul></div>` : ''}
+        ${warns.length > 0 ? `<div class="report-violations" style="color:var(--warn)">Alertas:<ul>${warns.map(x=>`<li>${x.msg}</li>`).join('')}</ul></div>` : ''}
+        ${v.length === 0 ? `<div style="color:var(--ok);font-size:12px;margin-top:8px;">✓ Nenhuma irregularidade identificada</div>` : ''}
+        ${e.obs ? `<div style="font-size:12px;color:var(--muted);margin-top:8px;font-style:italic;">"${e.obs}"</div>` : ''}
+      </div>
+      <div style="flex-shrink:0">
+        ${statusLabel(s)}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ================================================================
+//  REGRAS EDITOR
+// ================================================================
+function carregarRulesEditor() {
+  document.getElementById('rulesEditor').value = loadRules();
+}
+function salvarRegras() {
+  saveRulesStr(document.getElementById('rulesEditor').value);
+  toast('Regras salvas!');
+}
+function resetRegras() {
+  if (confirm('Restaurar regras padrão?')) {
+    document.getElementById('rulesEditor').value = DEFAULT_RULES;
+    saveRulesStr(DEFAULT_RULES);
+    toast('Regras restauradas.');
+  }
+}
+
+// ================================================================
+//  MODAL
+// ================================================================
+let _modalId = null;
+function abrirModal(id) {
+  const e = loadData().find(x => x.id === id);
+  if (!e) return;
+  _modalId = id;
+  const v = executarJulgamento(e);
+  const s = statusGeral(v);
+  const extraStr = Object.entries(e.extra||{}).map(([k,val]) => `<span class="pill pill-cat">${k}: ${val}</span>`).join(' ');
+
+  document.getElementById('modalTitle').textContent = e.nome || '—';
+  document.getElementById('modalBody').innerHTML = `
+    ${statusLabel(s)}
+    ${[
+      ['Nome', e.nome], ['Idade', e.idade], ['Cargo', e.cargo], ['Setor', e.setor],
+      ['Data da Entrevista', formatDate(e.data)], ['Situação', e.situacao],
+      ['Risco', e.risco], ['EPI/Documentação', e.epi],
+      ['Observações', e.obs]
+    ].filter(([,v]) => v).map(([k,v]) => `<div class="modal-field"><span class="key">${k}</span><span class="val">${v}</span></div>`).join('')}
+    ${extraStr ? `<div class="modal-field"><span class="key">Extras</span><span class="val">${extraStr}</span></div>` : ''}
+    ${v.length > 0 ? `
+      <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border);">
+        <div style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px">Avaliação</div>
+        ${v.map(x => `<div class="pill ${x.tipo==='bad'?'pill-bad':'pill-warn'}" style="display:inline-flex;margin:3px;">${x.msg}</div>`).join('')}
+      </div>` : ''}
+  `;
+  document.getElementById('modalBg').classList.add('open');
+}
+function fecharModal() { document.getElementById('modalBg').classList.remove('open'); }
+function editarDoModal() { fecharModal(); editarEntrevistado(_modalId); }
+function deletarDoModal() {
+  if (confirm('Excluir este entrevistado?')) {
+    fecharModal();
+    deletarEntrevistado(_modalId);
+  }
+}
+
+// ================================================================
+//  EDITAR / DELETAR
+// ================================================================
+function editarEntrevistado(id) {
+  const e = loadData().find(x => x.id === id);
+  if (!e) return;
+  document.getElementById('f-nome').value     = e.nome    || '';
+  document.getElementById('f-idade').value    = e.idade   || '';
+  document.getElementById('f-cargo').value    = e.cargo   || '';
+  document.getElementById('f-setor').value    = e.setor   || '';
+  document.getElementById('f-data').value     = e.data    || '';
+  document.getElementById('f-situacao').value = e.situacao || '';
+  document.getElementById('f-risco').value    = e.risco   || '';
+  document.getElementById('f-epi').value      = e.epi     || '';
+  document.getElementById('f-obs').value      = e.obs     || '';
+  document.getElementById('f-extra').value    = Object.entries(e.extra||{}).map(([k,v]) => `${k}: ${v}`).join(', ');
+  document.getElementById('f-editId').value   = e.id;
+  document.getElementById('formTitle').textContent = 'Editar: ' + e.nome;
+  showTab('cadastro');
+  window.scrollTo(0, 0);
+}
+
+function deletarEntrevistado(id) {
+  if (!confirm('Tem certeza que deseja excluir?')) return;
+  const db = loadData().filter(x => x.id !== id);
+  saveData(db);
+  renderLista();
+  toast('Entrevistado removido.');
+}
+
+// ================================================================
+//  EXPORT
+// ================================================================
+function exportJSON() {
+  const db = loadData();
+  const blob = new Blob([JSON.stringify(db, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `entrevistados_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+}
+
+function exportRelatorio() {
+  const db = loadData();
+  if (!db.length) { toast('Nenhum dado para exportar'); return; }
+  let txt = `RELATÓRIO DE ENTREVISTADOS\nGerado em: ${new Date().toLocaleString('pt-BR')}\n${'='.repeat(60)}\n\n`;
+  db.forEach(e => {
+    const v = executarJulgamento(e);
+    const s = statusGeral(v);
+    txt += `Nome: ${e.nome} | Status: ${s.toUpperCase()}\n`;
+    txt += `Idade: ${e.idade||'—'} | Cargo: ${e.cargo||'—'} | Setor: ${e.setor||'—'}\n`;
+    txt += `Data: ${formatDate(e.data)} | Situação: ${e.situacao||'—'} | Risco: ${e.risco||'—'}\n`;
+    if (v.length) txt += `Violações: ${v.map(x=>x.msg).join('; ')}\n`;
+    if (e.obs)   txt += `Obs: ${e.obs}\n`;
+    txt += `${'-'.repeat(40)}\n`;
+  });
+  const blob = new Blob([txt], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `relatorio_${new Date().toISOString().slice(0,10)}.txt`;
+  a.click();
+}
+
+// ================================================================
+//  UTILS
+// ================================================================
+function formatDate(d) {
+  if (!d) return '—';
+  const [y,m,day] = d.split('-');
+  return `${day}/${m}/${y}`;
+}
+
+let _toastTimeout;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(_toastTimeout);
+  _toastTimeout = setTimeout(() => el.classList.remove('show'), 2800);
+}
+
+// INIT
+updateNavCount();
+</script>
+</body>
+</html>
