@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Comentários LocalStorage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="forum-container">
+        <h2>Fórum de Discussão</h2>
+        
+        <form id="comment-form">
+            <div class="form-group">
+                <label for="username">Seu Nome:</label>
+                <input type="text" id="username" required placeholder="Digite seu nome...">
+            </div>
+            
+            <div class="form-group">
+                <label for="comment-text">Comentário:</label>
+                <textarea id="comment-text" rows="4" required placeholder="Escreva seu comentário aqui..."></textarea>
+            </div>
+            
+            <button type="submit">Enviar Comentário</button>
+        </form>
+
+        <hr>
+
+        <h3>Comentários (<span id="comment-count">0</span>)</h3>
+        <div id="comments-section">
+            </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
