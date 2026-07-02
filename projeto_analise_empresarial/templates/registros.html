@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Registros — {{ grupo.nome }}{% endblock %}
+
+{% block content %}
+<section class="hero hero-grupo">
+    <h1>📄 Registros — {{ grupo.nome }}</h1>
+    <p class="subtitulo">{{ grupo.turma }} · {{ grupo.empresa }}</p>
+</section>
+
+<section class="card-secao acoes-grupo">
+    <a class="botao" href="{{ url_for('diario', grupo=slug) }}">📝 Novo registro</a>
+    <a class="botao botao-secundario" href="{{ url_for('grupo_detalhe', grupo=slug) }}">⬅️ Voltar para o grupo</a>
+    <a class="botao botao-terciario" href="{{ url_for('index') }}">🏠 Voltar para início</a>
+</section>
+
+<section class="card-secao">
+    {% if historicos %}
+    <div class="grid-cards">
+        {% for registro in historicos %}
+        <div class="card card-registro">
+            <div class="card-registro-topo">
+                <span class="etiqueta-setor">{{ registro.setor }}</span>
+                <span class="etiqueta-grau grau-{{ registro.grau_organizacao|lower|replace(' ', '-') }}">{{ registro.grau_organizacao }}</span>
+            </div>
+            <h3>{{ registro.nome_estudante }}</h3>
+            <p><strong>Grupo:</strong> {{ registro.grupo }}</p>
+            <p><strong>Turma analisada:</strong> {{ registro.turma_analisada }}</p>
+            <p><strong>Empresa simulada:</strong> {{ registro.empresa_simulada }}</p>
+            <p><strong>Data da observação:</strong> {{ registro.data_observacao.strftime('%d/%m/%Y') }}</p>
+            <p><strong>Descrição:</strong> {{ registro.descricao }}</p>
+            {% if registro.pontos_positivos %}
+            <p><strong>Pontos positivos:</strong> {{ registro.pontos_positivos }}</p>
+            {% endif %}
+            {% if registro.pontos_melhoria %}
+            <p><strong>Pontos de melhoria:</strong> {{ registro.pontos_melhoria }}</p>
+            {% endif %}
+            <p class="registro-criado-em">Registrado em {{ registro.criado_em.strftime('%d/%m/%Y %H:%M') }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="sem-registros">Nenhum registro encontrado ainda para este grupo. Que tal iniciar a missão de análise?</p>
+    {% endif %}
+</section>
+{% endblock %}

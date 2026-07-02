@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}{{ grupo.nome }} — Sinerge{% endblock %}
+
+{% block content %}
+<section class="hero hero-grupo">
+    <h1>🕵️ {{ grupo.nome }}</h1>
+    <p class="subtitulo">{{ grupo.turma }} · {{ grupo.empresa }}</p>
+    <p class="hero-texto">{{ grupo.descricao }}</p>
+</section>
+
+<section class="card-secao">
+    <h2>🔎 O que observar</h2>
+    <p>
+        Durante a investigação empresarial fictícia, observe se o setor possui informações
+        completas, se a comunicação está clara, se os processos estão organizados e se o que foi
+        planejado está sendo executado. Registre evidências, pontos positivos e sugestões de
+        melhoria com respeito e responsabilidade.
+    </p>
+</section>
+
+<section class="card-secao">
+    <h2>🏢 Setores da {{ grupo.empresa }}</h2>
+    <div class="grid-cards">
+        <div class="card card-setor">
+            <h3>👥 RH</h3>
+            <p>Organização de pessoas, comunicação interna e clima da empresa simulada.</p>
+        </div>
+        <div class="card card-setor">
+            <h3>📣 Marketing</h3>
+            <p>Estratégias de divulgação, identidade visual e relacionamento com o público.</p>
+        </div>
+        <div class="card card-setor">
+            <h3>📊 Finanças</h3>
+            <p>Controle de receitas, despesas e planejamento financeiro da empresa.</p>
+        </div>
+        <div class="card card-setor">
+            <h3>🏭 Produção</h3>
+            <p>Processos, prazos e qualidade na entrega dos produtos ou serviços.</p>
+        </div>
+    </div>
+</section>
+
+<section class="card-secao acoes-grupo">
+    <a class="botao" href="{{ url_for('diario', grupo=slug) }}">📝 Registrar observação</a>
+    <a class="botao botao-secundario" href="{{ url_for('registros', grupo=slug) }}">📄 Ver registros</a>
+    <a class="botao botao-terciario" href="{{ url_for('index') }}">⬅️ Voltar para início</a>
+</section>
+{% endblock %}

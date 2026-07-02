@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Diário — {{ grupo.nome }}{% endblock %}
+
+{% block content %}
+<section class="hero hero-grupo">
+    <h1>📝 Diário de análise — {{ grupo.nome }}</h1>
+    <p class="subtitulo">{{ grupo.turma }} · {{ grupo.empresa }}</p>
+</section>
+
+<section class="card-secao">
+    <form class="formulario" method="post" action="{{ url_for('diario', grupo=slug) }}">
+        <input type="hidden" name="grupo" value="{{ grupo.nome }}">
+        <input type="hidden" name="turma_analisada" value="{{ grupo.turma }}">
+        <input type="hidden" name="empresa_simulada" value="{{ grupo.empresa }}">
+
+        <div class="campo">
+            <label for="nome_estudante">Nome do estudante</label>
+            <input type="text" id="nome_estudante" name="nome_estudante" value="{{ dados.get('nome_estudante', '') }}" required>
+        </div>
+
+        <div class="campo">
+            <label for="setor">Setor analisado</label>
+            <select id="setor" name="setor" required>
+                <option value="" disabled {% if not dados.get('setor') %}selected{% endif %}>Selecione um setor</option>
+                {% for setor in setores %}
+                <option value="{{ setor }}" {% if dados.get('setor') == setor %}selected{% endif %}>{{ setor }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="campo">
+            <label for="data_observacao">Data da observação</label>
+            <input type="date" id="data_observacao" name="data_observacao" value="{{ dados.get('data_observacao', '') }}" required>
+        </div>
+
+        <div class="campo">
+            <label for="descricao">Descrição da observação</label>
+            <textarea id="descricao" name="descricao" rows="4" required>{{ dados.get('descricao', '') }}</textarea>
+        </div>
+
+        <div class="campo">
+            <label for="pontos_positivos">Pontos positivos encontrados</label>
+            <textarea id="pontos_positivos" name="pontos_positivos" rows="3">{{ dados.get('pontos_positivos', '') }}</textarea>
+        </div>
+
+        <div class="campo">
+            <label for="pontos_melhoria">Pontos de melhoria</label>
+            <textarea id="pontos_melhoria" name="pontos_melhoria" rows="3">{{ dados.get('pontos_melhoria', '') }}</textarea>
+        </div>
+
+        <div class="campo">
+            <label for="grau_organizacao">✅ Grau de organização observado</label>
+            <select id="grau_organizacao" name="grau_organizacao" required>
+                <option value="" disabled {% if not dados.get('grau_organizacao') %}selected{% endif %}>Selecione um grau</option>
+                {% for grau in graus %}
+                <option value="{{ grau }}" {% if dados.get('grau_organizacao') == grau %}selected{% endif %}>{{ grau }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="card-botoes">
+            <button type="submit" class="botao">Salvar registro</button>
+            <a class="botao botao-secundario" href="{{ url_for('registros', grupo=slug) }}">📄 Ver registros</a>
+            <a class="botao botao-terciario" href="{{ url_for('grupo_detalhe', grupo=slug) }}">⬅️ Voltar para o grupo</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

@@ -1,1 +1,0 @@
-# sinerge-2o-ano-ds-empresas

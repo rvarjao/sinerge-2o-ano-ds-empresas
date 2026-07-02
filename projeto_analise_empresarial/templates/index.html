@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Sinerge — Missão de Análise Empresarial{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>🕵️ Sinerge — Missão de Análise Empresarial</h1>
+    <p class="subtitulo">Projeto do 2º Trimestre — 2º Ano de Desenvolvimento de Sistemas</p>
+    <p class="hero-texto">
+        Neste projeto, os estudantes do 2º ano de Desenvolvimento de Sistemas irão acompanhar e
+        analisar os projetos empresariais desenvolvidos pelas turmas do 1º ano e do 2º ano de
+        Administração. Cada empresa simulada será observada a partir de seus setores, documentos,
+        organização, comunicação e execução das tarefas.
+    </p>
+</section>
+
+<section class="card-secao">
+    <h2>📋 Sobre o projeto</h2>
+    <p>
+        A atividade une Administração, Empreendedorismo e Desenvolvimento de Sistemas. Enquanto as
+        turmas de Administração constroem suas empresas simuladas, os estudantes de DS registram
+        observações, analisam evidências, organizam informações e produzem um diário de
+        acompanhamento.
+    </p>
+</section>
+
+<section class="card-secao">
+    <h2>🎯 Missão dos estudantes</h2>
+    <p>
+        A missão dos estudantes é atuar como analistas empresariais. Eles devem observar cada
+        setor, registrar pontos positivos, identificar possíveis melhorias e verificar se a
+        empresa está funcionando de maneira organizada.
+    </p>
+    <p class="observacao-pedagogica">
+        A proposta pode ser apresentada como uma investigação empresarial fictícia. A ideia não é
+        competir ou criticar os colegas, mas aprender a observar processos, registrar informações
+        e propor melhorias com respeito e responsabilidade.
+    </p>
+</section>
+
+<section id="grupos" class="card-secao">
+    <h2>👥 Grupos em missão</h2>
+    <div class="grid-cards">
+        {% for slug, grupo in grupos.items() %}
+        <div class="card">
+            <h3>{{ grupo.nome }}</h3>
+            <p><strong>Turma analisada:</strong> {{ grupo.turma }}</p>
+            <p><strong>Empresa simulada:</strong> {{ grupo.empresa }}</p>
+            <p>{{ grupo.descricao }}</p>
+            <div class="card-botoes">
+                <a class="botao" href="{{ url_for('grupo_detalhe', grupo=slug) }}">Acessar grupo</a>
+                <a class="botao botao-secundario" href="{{ url_for('diario', grupo=slug) }}">📝 Registrar diário</a>
+                <a class="botao botao-secundario" href="{{ url_for('registros', grupo=slug) }}">📄 Ver registros</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="card-secao">
+    <h2>🏢 Setores analisados</h2>
+    <div class="grid-cards">
+        <div class="card card-setor">
+            <h3>👥 RH</h3>
+            <p>Organização de pessoas, comunicação interna e clima da empresa simulada.</p>
+        </div>
+        <div class="card card-setor">
+            <h3>📣 Marketing</h3>
+            <p>Estratégias de divulgação, identidade visual e relacionamento com o público.</p>
+        </div>
+        <div class="card card-setor">
+            <h3>📊 Finanças</h3>
+            <p>Controle de receitas, despesas e planejamento financeiro da empresa.</p>
+        </div>
+        <div class="card card-setor">
+            <h3>🏭 Produção</h3>
+            <p>Processos, prazos e qualidade na entrega dos produtos ou serviços.</p>
+        </div>
+    </div>
+</section>
+
+<section id="diario" class="card-secao">
+    <h2>📝 Diário de análise</h2>
+    <p>
+        Cada grupo de analistas mantém um diário próprio de observações. A cada visita ou
+        investigação, o estudante registra o que encontrou, os pontos positivos, os pontos de
+        melhoria e o grau de organização do setor observado. Esse histórico fica disponível na
+        página de registros de cada grupo.
+    </p>
+</section>
+
+<section class="card-secao">
+    <h2>👨‍🏫 Professores responsáveis</h2>
+    <div class="grid-cards">
+        {% for professor in professores %}
+        <div class="card card-professor">
+            <h3>{{ professor.nome }}</h3>
+            <p>{{ professor.area }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
